@@ -55,6 +55,17 @@ app.get("/albums/new", function(req, res){
     res.render("new.ejs");
 });
 
+//SHOW - ALBUM INFO
+app.get("/albums/:id", function(req, res){
+    Album.findById(req.params.id, function(err, foundAlbum){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("show", {album: foundAlbum});
+        }
+    });    
+});
+
 
 
 app.listen(3000, function() {

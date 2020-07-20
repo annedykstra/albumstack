@@ -8,8 +8,8 @@
     padding-right: 3rem;
 }
 
-.col-md-4 {
-    padding: 0px;
+.col-md-3 {
+    padding-left: 0;
     display: flex;
     max-width: 100%;
     height: auto;
@@ -18,6 +18,10 @@
 img {
     padding: 30px;
     width: 400px;
+}
+
+.img-thumbnail {
+    margin-bottom: 2rem;
 }
 
 #footer {
@@ -32,6 +36,16 @@ form {
 
 .form-control {
     font-size: 0.8rem;
+}
+
+#genre {
+    font-size: 0.8rem;
+}
+
+@media screen and (min-width: 768px) {
+    .text-left-md {
+       text-align: left;
+    }
 }
 
 #back-btn {
