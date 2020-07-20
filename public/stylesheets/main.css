@@ -1,0 +1,21 @@
+#subtitle {
+    font-size: 1.8rem;
+    font-style: italic;
+}
+
+.col-md-4 {
+    padding: 0px;
+    display: flex;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    padding: 30px;
+    width: 400px;
+}
+
+#footer {
+    margin: 5rem auto 0 auto;
+    font-size: 0.7rem;
+}
