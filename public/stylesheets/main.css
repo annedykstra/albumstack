@@ -3,6 +3,11 @@
     font-style: italic;
 }
 
+#new-btn {
+    padding-top: 2.5rem;
+    padding-right: 3rem;
+}
+
 .col-md-4 {
     padding: 0px;
     display: flex;
@@ -17,5 +22,19 @@ img {
 
 #footer {
     margin: 5rem auto 0 auto;
+    font-size: 0.7rem;
+}
+
+form {
+    width: 30%;
+    margin: 25px auto;
+}
+
+.form-control {
+    font-size: 0.8rem;
+}
+
+#back-btn {
+    text-align: center;
     font-size: 0.7rem;
 }

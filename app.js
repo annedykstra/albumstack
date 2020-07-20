@@ -1,22 +1,58 @@
 var express    = require("express"),
-    app        = express();
+    app        = express(),
+    bodyParser = require("body-parser"),
+    mongoose   = require("mongoose");
 
+mongoose.set("useUnifiedTopology", true);
+mongoose.connect("mongodb://localhost/albumstack", {useNewUrlParser: true});
+app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
+// SCHEMA SETUP
+var albumSchema = new mongoose.Schema({
+    name: String,
+    artist: String,
+    genre: String,
+    image: String
+});   
 
-var albums = [
-    {name: "Rumours", artist: "Fleetwood Mac", genre: "Rock", image: "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG"},
-    {name: "Déjà Vu", artist: "Crosby, Stills, Nash & Young", genre: "Rock", image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg/220px-Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg"},
-    {name: "The Joshua Tree", artist: "U2", genre: "Rock", image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/The_Joshua_Tree.png/220px-The_Joshua_Tree.png"},
-];
+var Album = mongoose.model("Album", albumSchema);
    
 app.get("/", function(req, res){
     res.render("landing");    
 });
 
+//INDEX - SHOW COLLECTION
 app.get("/albums", function(req, res){
-    res.render("albums",{albums:albums});
+    Album.find({}, function(err, albums){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("index",{albums:albums});
+        }
+    });
+});
+
+//CREATE - ADD ALBUMS TO DB
+app.post("/albums", function(req, res){
+    var name = req.body.name;
+    var artist = req.body.artist;
+    var genre = req.body.genre;
+    var image = req.body.image;
+    var newAlbum = {name: name, artist: artist, genre: genre, image: image}
+    Album.create(newAlbum, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/albums");
+        }
+    });    
+});
+
+//NEW - FORM TO ADD ALBUMS
+app.get("/albums/new", function(req, res){
+    res.render("new.ejs");
 });
 
 
