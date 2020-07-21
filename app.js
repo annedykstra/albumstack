@@ -40,12 +40,7 @@ app.get("/albums", function(req, res){
 
 //CREATE - ADD ALBUMS TO DB
 app.post("/albums", function(req, res){
-    var title = req.body.title;
-    var artist = req.body.artist;
-    var genre = req.body.genre;
-    var image = req.body.image;
-    var newAlbum = {name: title, artist: artist, genre: genre, image: image}
-    Album.create(newAlbum, function(err, newlyCreated){
+    Album.create(req.body.album, function(err, newAlbum){
         if(err){
             console.log(err);
         } else {
