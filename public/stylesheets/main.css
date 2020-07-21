@@ -8,6 +8,11 @@
     padding-right: 3rem;
 }
 
+#edit-btn {
+    padding-top: 2.5rem;
+    padding-right: 3rem;
+}
+
 .col-md-3 {
     padding-left: 0;
     display: flex;
