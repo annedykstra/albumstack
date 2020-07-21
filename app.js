@@ -92,7 +92,16 @@ app.put("/albums/:id", function(req, res){
     });
 });
 
-
+//DESTROY ROUTE
+app.delete("/albums/:id", function(req, res){
+    Album.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/albums");
+        }
+    });
+});
 
 app.listen(3000, function() {
     console.log('Server has started!');

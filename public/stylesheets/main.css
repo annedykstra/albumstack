@@ -3,14 +3,8 @@
     font-style: italic;
 }
 
-#new-btn {
-    padding-top: 2.5rem;
-    padding-right: 3rem;
-}
-
-#edit-btn {
-    padding-top: 2.5rem;
-    padding-right: 3rem;
+.album-btn {
+    margin-top: 2rem;
 }
 
 .col-md-3 {
