@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router();
 var Album = require("../models/album");
+var middleware = require("../middleware");
 
 //INDEX - SHOW COLLECTION
 router.get("/", function(req, res){
@@ -14,7 +15,7 @@ router.get("/", function(req, res){
 });
 
 //CREATE - ADD ALBUMS TO DB
-router.post("/", isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
     var title = req.body.album.title;
     var artist = req.body.album.artist;
     var genre = req.body.album.genre;
@@ -28,14 +29,13 @@ router.post("/", isLoggedIn, function(req, res){
         if(err){
             res.render("/albums/new");
         } else {
-            // console.log(createNewAlbum);
             res.redirect("/albums");
         }
     });    
 });
 
 //NEW - FORM ADD ALBUMS
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("new.ejs");
 });
 
@@ -51,14 +51,14 @@ router.get("/:id", function(req, res){
 });
 
 //EDIT ROUTE
-router.get("/:id/edit", checkAlbumOwnership, function(req, res){
+router.get("/:id/edit", middleware.checkAlbumOwnership, function(req, res){
     Album.findById(req.params.id, function(err, foundAlbum){
         res.render("edit", {album: foundAlbum});            
     });
 });
 
 //UPDATE ROUTE
-router.put("/:id", checkAlbumOwnership, function(req, res){
+router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndUpdate(req.params.id, req.body.album, function(err, foundAlbum){
         if(err){
             res.redirect("/albums");
@@ -69,7 +69,7 @@ router.put("/:id", checkAlbumOwnership, function(req, res){
 });
 
 //DESTROY ROUTE
-router.delete("/:id", checkAlbumOwnership, function(req, res){
+router.delete("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("back");
@@ -78,31 +78,5 @@ router.delete("/:id", checkAlbumOwnership, function(req, res){
         }
     });
 });
-
-//MIDDLEWARE
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
-
-function checkAlbumOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Album.findById(req.params.id, function(err, foundAlbum){
-            if(err){
-                res.redirect("back");
-            } else {
-                if(foundAlbum.author.id.equals(req.user._id)){
-                    next();
-                } else {
-                    res.redirect("back");
-                }     
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-}
 
 module.exports = router;
