@@ -7,7 +7,11 @@ var bodyParser     = require("body-parser"),
     User           = require("./models/user"),
     express        = require("express"),
     app            = express();
-    
+
+//REQUIRING ROUTES
+var albumRoutes = require("./routes/albums"),
+    indexRoutes = require("./routes/index");   
+
 //APP CONFIG
 mongoose.set('useFindAndModify', false);
 mongoose.set("useUnifiedTopology", true);
@@ -35,125 +39,8 @@ app.use(function(req, res, next){
     next();
 });
 
-app.get("/", function(req, res){
-    res.render("landing");    
-});
-
-//INDEX - SHOW COLLECTION
-app.get("/albums", function(req, res){
-    Album.find({}, function(err, albums){
-        if(err){
-            console.log(err);
-        } else {
-            res.render("index",{albums: albums});
-        }
-    });
-});
-
-//CREATE - ADD ALBUMS TO DB
-app.post("/albums", isLoggedIn, function(req, res){
-    Album.create(req.body.album, function(err, newAlbum){
-        if(err){
-            console.log(err);
-        } else {
-            res.redirect("/albums");
-        }
-    });    
-});
-
-//NEW - FORM TO ADD ALBUMS
-app.get("/albums/new", isLoggedIn, function(req, res){
-    res.render("new.ejs");
-});
-
-//SHOW - ALBUM INFO
-app.get("/albums/:id", function(req, res){
-    Album.findById(req.params.id, function(err, foundAlbum){
-        if(err){
-            console.log(err);
-        } else {
-            res.render("show", {album: foundAlbum});
-        }
-    });    
-});
-
-//EDIT ROUTE
-app.get("/albums/:id/edit", isLoggedIn, function(req, res){
-    Album.findById(req.params.id, function(err, foundAlbum){
-        if(err){
-            res.redirect("/albums");            
-        } else {
-            res.render("edit", {album: foundAlbum});
-        }
-    });
-});
-
-//UPDATE ROUTE
-app.put("/albums/:id", isLoggedIn, function(req, res){
-    Album.findByIdAndUpdate(req.params.id, req.body.album, function(err, foundAlbum){
-        if(err){
-            res.redirect("/albums");
-        } else {
-            res.redirect("/albums/" + req.params.id);
-        }
-    });
-});
-
-//DESTROY ROUTE
-app.delete("/albums/:id", isLoggedIn, function(req, res){
-    Album.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-            console.log(err);
-        } else {
-            res.redirect("/albums");
-        }
-    });
-});
-
-//AUTH ROUTES
-app.get("/register", function(req, res){
-    res.render("register");
-});
-
-app.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return res.render("register");
-        }
-        passport.authenticate("local")(req, res, function(){
-            res.redirect("/albums");
-        })
-    });
-});
-
-//LOGIN FORM
-app.get("/login", function(req, res){
-    res.render("login");
-});
-
-//LOGIC ROUTES
-app.post("/login", passport.authenticate("local",
-    {
-        successRedirect: "/albums",
-        failureRedirect: "/login"
-    }), function(req, res){    
-});
-
-app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/albums");
-});
-
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
-
-
+app.use("/", indexRoutes);
+app.use("/albums", albumRoutes);
 
 app.listen(3000, function() {
     console.log('Server has started!');
