@@ -4,7 +4,13 @@ var albumSchema = new mongoose.Schema({
     title: String,
     artist: String,
     genre: String,
-    image: String
+    image: String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    }
 });   
 
 module.exports = mongoose.model("Album", albumSchema);
