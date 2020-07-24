@@ -63,6 +63,7 @@ router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
         if(err){
             res.redirect("/albums");
         } else {
+            req.flash("success", "Successfully edited " + req.body.album.title);
             res.redirect("/albums/" + req.params.id);
         }
     });
@@ -74,6 +75,7 @@ router.delete("/:id", middleware.checkAlbumOwnership, function(req, res){
         if(err){
             res.redirect("back");
         } else {
+            req.flash("success", "Album deleted successfully")
             res.redirect("/albums");
         }
     });

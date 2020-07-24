@@ -32,3 +32,18 @@
                 </ul>
             </div>
         </nav>
+
+        <div id="flash-message" class="fluid-container text-center">
+            <% if(error && error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <em><%= error %></em>
+                </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert alert-success" role="alert">
+                    <em><%= success %></em>
+                </div>
+            <% } %>
+        </div>
+        
+        
