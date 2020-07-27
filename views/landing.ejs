@@ -1,6 +1,38 @@
-<%- include("partials/header") %>
-<div class="text-center">
-    <h1>landing page</h1>
-    <a href="/albums">view album page</a>
-</div>
-<%- include("partials/footer") %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AlbumStack™</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
+        <link rel="stylesheet" type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async>
+    </head>
+    <body>
+
+        <div id="flash-message" class="container-fluid text-center">
+            <% if(error && error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <em><%= error %></em>
+                </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert alert-success" role="alert">
+                    <em><%= success %></em>
+                </div>
+            <% } %>
+        </div>
+
+        <div id="landing-header" class="container-fluid text-center">
+            <h1>Share your collection on AlbumStack™</h1>
+            <a href="/albums" id="landing-btn" class="btn btn-lg btn-success">View albums</a>
+        </div>
+
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>            
+            <li></li>            
+            <li></li>                       
+        </ul>  
+    
+    <body>
+<html>
