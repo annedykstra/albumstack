@@ -1,23 +1,22 @@
 <%- include("partials/header") %>
-<div class="wrapper">
-    <header class="page-header container jumbotron">
-        <div id="home-header" class="text-center">
-            <h1>Share your collection on AlbumStack™</h1>
-            <p id="subtitle">Let's put it together!</p>
-            <div class="album-btn">
-                <a class="album-btn btn btn-outline-light btn-md" href="/albums/new">Add new album</a>
-            </div>
+<header class="page-header container jumbotron">
+    <div id="home-header" class="text-center">
+        <h1>Share your collection on AlbumStack™</h1>
+        <p id="subtitle">Let's put it together!</p>
+        <div class="album-btn">
+            <a class="album-btn btn btn-outline-light btn-md" href="/albums/new">Add new album</a>
         </div>
-    </header>
-    <main class="page-body container">
-        <div class="row">
-            <% albums.forEach(function(album){ %>
-                <div class="col-md-4">
-                    <a href="/albums/<%= album._id %>">
-                    <img src="<%= album.image %>" alt="<%= album.title %>" class="img-thumbnail img-fluid">
-                    </a>                 
-                </div>               
-            <% }); %>
-        </div>
-    </main>
+    </div>
+</header>
+<main id="home-body" class="page-body container">
+    <div class="row">
+        <% albums.forEach(function(album){ %>
+            <div class="col-md-4">
+                <a href="/albums/<%= album._id %>">
+                <img src="<%= album.image %>" alt="<%= album.title %>" class="img-thumbnail img-fluid">
+                </a>                 
+            </div>               
+        <% }); %>
+    </div>
+</main>
 <%- include("partials/footer") %>

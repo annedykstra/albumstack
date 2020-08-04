@@ -1,34 +1,33 @@
 <%- include("partials/header") %>
-<div class="wrapper">
-    <header class="page-header container jumbotron">
-        <div class="text-center">
-            <h1>Add albums to your collection</h1>
+<header class="page-header container jumbotron">
+    <div class="text-center">
+        <h1>Add albums to your collection</h1>
+    </div>
+</header>        
+<main class="page-body container">
+    <form action="/albums" method="POST">
+        <div class="form-group">
+            <label for="name">Album title:</label>
+            <input class="form-control" type="text" name="album[title]" placeholder="e.g. Déjà Vu">
         </div>
-    </header>        
-    <main class="page-body container">
-        <form action="/albums" method="POST">
-            <div class="form-group">
-                <label for="name">Album title:</label>
-                <input class="form-control" type="text" name="album[title]" placeholder="e.g. Déjà Vu">
-            </div>
-            <div class="form-group">
-                <label for="artist">Artist:</label>
-                <input class="form-control" type="text" name="album[artist]" placeholder="e.g. Crosby, Stills, Nash & Young">
-            </div>
-            <div class="form-group">
-                <label for="genre">Genre:</label>
-                <input class="form-control" type="text" name="album[genre]" placeholder="e.g. Folk Rock">
-            </div>
-            <div class="form-group">
-                <label for="image">Image URL:</label>
-                <input class="form-control" type="text" name="album[image]" placeholder="e.g. https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg/220px-Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-md btn-dark btn-block">Submit</button>
-            </div>                    
-        </form>
-        <div id="back-btn">
-            <a href="/albums">Back to album page</a>
-        </div>    
-    </main>
+        <div class="form-group">
+            <label for="artist">Artist:</label>
+            <input class="form-control" type="text" name="album[artist]" placeholder="e.g. Crosby, Stills, Nash & Young">
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input class="form-control" type="text" name="album[genre]" placeholder="e.g. Folk Rock">
+        </div>
+        <div class="form-group">
+            <label for="image">Image URL:</label>
+            <input class="form-control" type="text" name="album[image]" placeholder="e.g. https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg/220px-Crosby%2C_Stills%2C_Nash_%26_Young_-_Deja_Vu.jpg">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-md btn-dark btn-block">Submit</button>
+        </div>                    
+    </form>
+    <div id="back-btn">
+        <a href="/albums">Back to album page</a>
+    </div>    
+</main>
 <%- include("partials/footer") %>

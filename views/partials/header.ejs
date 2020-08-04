@@ -10,42 +10,43 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">        
     </head>       
     <body>
-        <nav class="navbar container sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/albums"><img src="/imgs/logo.png"> AlbumStack™</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse nav justify-content-end" id="navbar">
-                <ul class="navbar-nav">
-                    <% if(!currentUser){ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Signup</a>
-                        </li>
-                    <% } else { %>
-                        <li class="nav-item">
-                            <a id="signed-in" class="nav-link" href="#">Signed in as <%= currentUser.username %></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Log out</a>
-                        </li>
-                    <% } %>
-                </ul>
-            </div>
-        </nav>
-        <div id="flash" class="container text-center">
-            <% if(error && error.length > 0){ %>
-                <div class="flash-message alert alert-danger" role="alert">
-                    <em><%= error %></em>
+        <div class="wrapper">
+            <nav class="navbar container sticky-top navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/albums"><img src="/imgs/logo.png"> AlbumStack™</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse nav justify-content-end" id="navbar">
+                    <ul class="navbar-nav">
+                        <% if(!currentUser){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Signup</a>
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a id="signed-in" class="nav-link" href="#">Signed in as <%= currentUser.username %></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Log out</a>
+                            </li>
+                        <% } %>
+                    </ul>
                 </div>
-            <% } %>
-            <% if(success && success.length > 0){ %>
-                <div class="flash-message alert alert-success" role="alert">
-                    <em><%= success %></em>
-                </div>
-            <% } %>
-        </div>       
+            </nav>
+            <div id="flash" class="container text-center">
+                <% if(error && error.length > 0){ %>
+                    <div class="flash-message alert alert-danger" role="alert">
+                        <em><%= error %></em>
+                    </div>
+                <% } %>
+                <% if(success && success.length > 0){ %>
+                    <div class="flash-message alert alert-success" role="alert">
+                        <em><%= success %></em>
+                    </div>
+                <% } %>
+            </div>       
         
