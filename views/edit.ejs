@@ -1,14 +1,12 @@
 <%- include("partials/header") %>
 <header class="page-header container jumbotron">
     <div class="text-center">
-        <h1>Edit album info</h1>
-        <div class="album-btn">
-            <form action="/albums/<%= album._id %>?_method=DELETE" method="POST">
-                <button class="album-btn btn btn-outline-warning btn-md">Delete album</button>
-            </form>            
-        </div>
+        <h1>Edit album info</h1>        
+        <form action="/albums/<%= album._id %>?_method=DELETE" method="POST">
+            <button class="album-btn btn btn-outline-warning btn-md">Delete</button>
+        </form>       
     </div>
-</header>        
+</header>    
 <main class="page-body container">
     <form action="/albums/<%= album._id %>?_method=PUT" method="POST">
         <div class="form-group">

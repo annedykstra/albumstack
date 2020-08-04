@@ -2,11 +2,9 @@
 <header class="page-header container jumbotron">
     <div class="text-center">
         <h1>Album info</h1>                  
-        <% if(currentUser && album.author.id.equals(currentUser._id)){ %>
-        <div class="album-btn">
-            <a class="album-btn btn btn-outline-light btn-md" href="/albums/<%= album._id %>/edit">Edit album</a>
-        </div>
-    <% } %>            
+        <% if(currentUser && album.author.id.equals(currentUser._id)){ %>        
+            <a class="album-btn btn btn-outline-light btn-md" href="/albums/<%= album._id %>/edit">Edit</a>        
+        <% } %>            
     </div>
 </header>
 <main class="page-body container">

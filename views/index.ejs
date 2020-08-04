@@ -1,11 +1,43 @@
 <%- include("partials/header") %>
-<header class="page-header container jumbotron">
-    <div id="home-header" class="text-center">
-        <h1>Share your collection on AlbumStack™</h1>
-        <p id="subtitle">Let's put it together!</p>
-        <div class="album-btn">
-            <a class="album-btn btn btn-outline-light btn-md" href="/albums/new">Add new album</a>
+<header class="page-header">
+    <div class="container jumbotron">
+        <div id="home-header" class="text-center">
+            <h1>Share your collection on AlbumStack™</h1>
+            <p id="subtitle">Let's put it together!</p>            
         </div>
+    </div>
+    <div class="second-navbar container">
+        <nav class="navbar navbar-expand-lg">        
+            <div class="btn-group">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Your account</a>                                    
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">All users</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genre</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">All genres</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Artist</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">All artists</a>
+                </div>
+            </div>        
+            <div class="navbar-nav ml-auto">           
+                <a class="album-btn-new btn btn-outline-light btn-md" href="/albums/new">New</a>
+            </div>               
+        </nav>
     </div>
 </header>
 <main id="home-body" class="page-body container">
