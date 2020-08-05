@@ -68,10 +68,6 @@ html, body {
     margin-bottom: 0;
 }
 
-.page-header {
-    padding-bottom: 1rem;
-}
-
 .second-navbar {
     background-color: rgba(44, 118, 133, 0.856);
     opacity: .97;
