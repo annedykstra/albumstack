@@ -86,10 +86,11 @@ router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
 router.delete("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect("/albums");
+            req.flash("error", "Album not deleted")
+            res.redirect("/albums/user");
         } else {
             req.flash("success", "Album deleted successfully")
-            res.redirect("/albums");
+            res.redirect("/albums/user");
         }
     });
 });
