@@ -11,9 +11,9 @@
             <div class="btn-group">
                 <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Show</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/albums/user">Your collection</a>                                    
+                    <a class="dropdown-item" href="/albums/user"><strong>Your collection</strong></a>                                    
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/albums"><strong>All users</strong></a>
+                    <a class="dropdown-item" href="/albums">All users</a>
                 </div>
             </div>
             <!-- <div class="btn-group">
@@ -34,20 +34,22 @@
                     <a class="dropdown-item" href="#">All artists</a>
                 </div>
             </div>         -->
-            <!-- <div class="navbar-nav ml-auto">           
+            <div class="navbar-nav ml-auto">           
                 <a class="album-btn-new btn btn-outline-light btn-md" href="/albums/new">New</a>
-            </div>                -->
+            </div>               
         </nav>
     </div>
 </header>
 <main id="home-body" class="page-body container">
     <div class="row">
         <% albums.forEach(function(album){ %>
-            <div class="col-md-4">
-                <a href="/albums/<%= album._id %>">
-                <img src="<%= album.image %>" alt="<%= album.title %>" class="img-thumbnail img-fluid">
-                </a>                 
-            </div>               
+            <% if(currentUser && album.author.id.equals(currentUser._id)){ %>        
+                <div class="col-md-4">
+                    <a href="/albums/<%= album._id %>">
+                    <img src="<%= album.image %>" alt="<%= album.title %>" class="img-thumbnail img-fluid">
+                    </a>                 
+                </div>         
+            <% } %>                        
         <% }); %>
     </div>
 </main>

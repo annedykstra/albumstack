@@ -37,7 +37,7 @@ router.get("/login", function(req, res){
 //LOGIN LOGIC
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/albums",
+        successRedirect: "/albums/user",
         failureRedirect: "/login"
     }), function(req, res){    
 });

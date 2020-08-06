@@ -68,6 +68,10 @@ html, body {
     margin-bottom: 0;
 }
 
+.collection .container {
+    padding-bottom: 1rem;
+}
+
 .second-navbar {
     background-color: rgba(44, 118, 133, 0.856);
     opacity: .97;
@@ -78,7 +82,7 @@ html, body {
 }
 
 .btn-group button {
-    margin-right: 0.3rem;
+    /* margin-right: 0.3rem; */
     margin-bottom: 1rem;
 }
 
@@ -94,7 +98,7 @@ html, body {
     padding-bottom: 0;
 }
 
-#home-header h1 {
+.collection h1 {
     font-weight: 500;
     font-size: 2.5rem;
 }

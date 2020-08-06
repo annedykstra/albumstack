@@ -14,6 +14,17 @@ router.get("/", function(req, res){
     });
 });
 
+//SHOW PRIVATE COLLECTION
+router.get("/user", middleware.isLoggedIn, function(req, res){
+    Album.find({}, function(err, albums){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("user",{albums: albums});
+        }
+    });
+});
+
 //CREATE - ADD ALBUMS TO DB
 router.post("/", middleware.isLoggedIn, function(req, res){
     var title = req.body.album.title;
@@ -27,10 +38,10 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var createNewAlbum = {title: title, artist: artist, genre: genre, image: image, author: author};
     Album.create(createNewAlbum, function(err, newAlbum){
         if(err){
-            console.log("create route error: ", err);
+            console.log(err);
             res.render("new");
         } else {
-            res.redirect("/albums");
+            res.redirect("/albums/user");
         }
     });    
 });
@@ -62,7 +73,8 @@ router.get("/:id/edit", middleware.checkAlbumOwnership, function(req, res){
 router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndUpdate(req.params.id, req.body.album, function(err, foundAlbum){
         if(err){
-            res.redirect("/albums");
+            req.flash("error", "Failed edit " + req.body.album.title);
+            res.redirect("/albums/" + req.params.id);
         } else {
             req.flash("success", "Successfully edited " + req.body.album.title);
             res.redirect("/albums/" + req.params.id);

@@ -1,6 +1,7 @@
 require("dotenv").config();
 
-var bodyParser     = require("body-parser"),
+var $              = require("jquery");
+    bodyParser     = require("body-parser"),
     methodOverride = require("method-override"),
     mongoose       = require("mongoose"),
     flash          = require("connect-flash"),
@@ -16,19 +17,19 @@ var albumRoutes = require("./routes/albums"),
     indexRoutes = require("./routes/index");   
 
 //APP CONFIG
-// mongoose.set('useFindAndModify', false);
-// mongoose.set("useUnifiedTopology", true);
-// mongoose.connect("mongodb://localhost/albumstack", {useNewUrlParser: true});
-mongoose.connect(process.env.db_url, {
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true
-}).then(() => {
-    console.log("Connected to database!");
-}).catch(err => {
-    console.log(err.message);
-});
+mongoose.set('useFindAndModify', false);
+mongoose.set("useUnifiedTopology", true);
+mongoose.connect("mongodb://localhost/albumstack", {useNewUrlParser: true});
+// mongoose.connect(process.env.db_url, {
+//     useFindAndModify: false,
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log("Connected to database!");
+// }).catch(err => {
+//     console.log(err.message);
+// });
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
