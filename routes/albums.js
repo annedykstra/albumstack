@@ -27,6 +27,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var createNewAlbum = {title: title, artist: artist, genre: genre, image: image, author: author};
     Album.create(createNewAlbum, function(err, newAlbum){
         if(err){
+            console.log("create route error: ", err);
             res.render("new");
         } else {
             res.redirect("/albums");
@@ -73,7 +74,7 @@ router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
 router.delete("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect("back");
+            res.redirect("/albums");
         } else {
             req.flash("success", "Album deleted successfully")
             res.redirect("/albums");
