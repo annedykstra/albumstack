@@ -27,7 +27,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var createNewAlbum = {title: title, artist: artist, genre: genre, image: image, author: author};
     Album.create(createNewAlbum, function(err, newAlbum){
         if(err){
-            res.render("/albums/new");
+            res.render("/new");
         } else {
             res.redirect("/albums");
         }
