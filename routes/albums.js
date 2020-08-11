@@ -73,7 +73,7 @@ router.get("/:id/edit", middleware.checkAlbumOwnership, function(req, res){
 router.put("/:id", middleware.checkAlbumOwnership, function(req, res){
     Album.findByIdAndUpdate(req.params.id, req.body.album, function(err, foundAlbum){
         if(err){
-            req.flash("error", "Failed edit " + req.body.album.title);
+            req.flash("error", "Failed to edit " + req.body.album.title);
             res.redirect("/albums/" + req.params.id);
         } else {
             req.flash("success", "Successfully edited " + req.body.album.title);
